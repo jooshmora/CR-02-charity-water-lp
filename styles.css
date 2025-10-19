@@ -1,139 +1,71 @@
 /* charity: water Brand Colors & Fonts
 
 Primary Colors:
+- Blue:       #77A8BB
 - Yellow:     #FFC907
-- Blue:       #2E9DF7
 
 Secondary Colors:
-- Light Blue: #8BD1CB
-- Green:      #4FCB53
-- Orange:     #FF902A
-- Red:        #F5402C
-- Dark Green: #159A48
-- Pink:       #F16061
-
-Fonts:
-- Proxima Nova
-- Avenir
-
+- Light Yellow: #FFF7E1
+- Peach:       #FED8C1
 */
 
-/* 
-  Charity: Water Landing Page Styles
-  This CSS uses the provided color palette and beginner-friendly styles.
-*/
-
-/* Set up the main font and background color for the whole page */
 body {
-  background-color: #f4f8fb; /* Soft light blue for a fresh look */
-  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  background-color: #FFF7E1; /* Light yellow background */
+  font-family: 'Proxima Nova', Arial, sans-serif;
   margin: 0;
   padding: 0;
-  color: #222;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #333;
 }
 
-/* Add a slight shadow and rounded corners to each section for depth */
-section {
-  background: #fff; /* White background for sections */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.07); /* Soft blue shadow */
-  margin: 24px 10px; /* Space between sections */
-  padding: 24px 16px;
+.site-header {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Hero Section Styles */
-.hero {
-  position: relative; /* Needed for overlay */
-  /* Set a background image that covers the whole section */
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');
-  background-size: cover;      /* Make the image cover the whole area */
-  background-position: center; /* Center the image */
+.site-header h1 {
+  color: #77A8BB; /* Primary blue */
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.main-cta {
+  flex: 1;
+  position: relative;
+  background-image: url('img/charwater2.0.jpeg');
+  background-size: 120%; /* Zoom out to show more of the image */
+  background-position: center 40%; /* Adjust vertical position slightly */
   background-repeat: no-repeat;
-  color: #fff;                 /* White text for contrast */
-  text-align: center;          /* Center the text */
-  padding: 60px 20px;          /* Add space above and below */
-  border-radius: 0 0 16px 16px; /* Only round bottom corners */
-
-  /* Add a dark overlay for better text readability */
-  /* This uses a simple linear-gradient overlay */
-  background-blend-mode: darken;
-  background-color: rgba(46, 157, 247, 0.45); /* Blue overlay */
-}
-
-/* Make the headline bold and modern */
-.hero h1 {
-  font-size: 2.5em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Soft shadow for readability */
-}
-
-/* Style the subheadline */
-.hero p {
-  font-size: 1.2em;
-  margin-top: 0;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.12);
-}
-
-/* Story Section Styles */
-.story {
-  background-color: #8BD1CB; /* Secondary Light Blue */
-  color: #222;
-  text-align: center;
-  padding: 30px 20px;
-}
-
-/* Add accent color to section headings */
-h2 {
-  color: #2E9DF7; /* Primary blue */
-  margin-top: 0;
-  font-weight: bold;
-}
-
-/* Call-to-Action Section Styles */
-.call-to-action {
-  background-color: #FFC907; /* Primary Yellow */
-  color: #222;
-  text-align: center;
-  padding: 30px 20px;
-}
-
-/* Style the impact story image */
-.impact-image {
+  image-rendering: -webkit-optimize-contrast; /* Sharper image rendering */
+  image-rendering: crisp-edges;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  max-width: 2000px; /* Limit max width for ultra-wide screens */
+  margin: 0 auto;
   width: 100%;
-  max-width: 320px;
-  border-radius: 10px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+  overflow: hidden; /* Ensure overlay stays within bounds */
 }
 
-/* Donate Button Styles */
-.donate-button {
-  display: inline-block;
-  background-color: #4FCB53; /* Green */
-  color: #fff;
-  padding: 14px 32px;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 1.1em;
-  margin-top: 18px;
-  box-shadow: 0 2px 8px rgba(79, 203, 83, 0.10);
-  transition: background 0.3s, transform 0.2s;
-  border: none;
-  cursor: pointer;
+/* Add dark overlay */
+.main-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4); /* Darker overlay */
+  z-index: 1;
 }
 
-/* Change button color when hovered */
-.donate-button:hover {
-  background-color: #159A48; /* Dark Green */
-  transform: translateY(-2px) scale(1.04); /* Slight lift */
-}
-
-/* Add some spacing between sections */
-section {
-  margin-bottom: 20px;
+/* Ensure content stays above overlay */
+.cta-content {
+  position: relative;
+  z-index: 2;
 }
 
 /* 
@@ -177,6 +109,10 @@ section {
     width: 90%;    /* Make image take up most of the width */
     max-width: 220px;
   }
+
+  .cta-content h2 {
+    font-size: 2rem;
+  }
 }
 
 /* This media query applies styles when the screen is wider than 600px (like on tablets and computers) */
@@ -195,4 +131,149 @@ section {
   .impact-image {
     width: 300px;
   }
+
+  .cta-content {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .cta-content h2 {
+    color: #FFF7E1;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+
+  .cta-content p {
+    color: #fff;
+    font-size: 1.2rem;
+    max-width: 800px;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+
+  .donate-button {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #77A8BB; /* Primary blue */
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.2s;
+    white-space: nowrap;
+  }
+
+  .donate-button:hover {
+    background-color: #5d8a9c; /* Darker shade of primary blue */
+    transform: translateY(-2px); /* Slight lift */
+  }
+}
+
+section {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(119, 168, 187, 0.1); /* Soft blue shadow */
+  margin: 24px 10px;
+  padding: 24px 16px;
+}
+
+.hero {
+  position: relative; /* Needed for overlay */
+  /* Set a background image that covers the whole section */
+  background-image: url('img/charwater2.0.jpeg');
+  background-size: cover;      /* Make the image cover the whole area */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  color: #fff;                 /* White text for contrast */
+  text-align: center;          /* Center the text */
+  padding: 60px 20px;          /* Add space above and below */
+  border-radius: 0 0 16px 16px; /* Only round bottom corners */
+
+  /* Add a dark overlay for better text readability */
+  /* This uses a simple linear-gradient overlay */
+  background-blend-mode: darken;
+  background-color: rgba(119, 168, 187, 0.6); /* Blue overlay */
+}
+
+/* Make the headline bold and modern */
+.hero h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Soft shadow for readability */
+}
+
+/* Style the subheadline */
+.hero p {
+  font-size: 1.2em;
+  margin-top: 0;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+/* Story Section Styles */
+.story {
+  background-color: #FED8C1; /* Secondary peach */
+  color: #333;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+/* Add accent color to section headings */
+h2 {
+  color: #77A8BB; /* Primary blue */
+  margin-top: 0;
+  font-weight: bold;
+}
+
+/* Call-to-Action Section Styles */
+.call-to-action {
+  background-color: #FFC907; /* Primary Yellow */
+  color: #222;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+/* Style the impact story image */
+.impact-image {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+}
+
+/* Donate Button Styles */
+.donate-button {
+  display: inline-block;
+  background-color: #77A8BB; /* Primary blue */
+  color: #fff;
+  padding: 14px 32px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-top: 18px;
+  box-shadow: 0 2px 8px rgba(79, 203, 83, 0.10);
+  transition: background 0.3s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+/* Change button color when hovered */
+.donate-button:hover {
+  background-color: #5d8a9c; /* Darker shade of primary blue */
+  transform: translateY(-2px) scale(1.04); /* Slight lift */
+}
+
+/* Add some spacing between sections */
+section {
+  margin-bottom: 20px;
 }
