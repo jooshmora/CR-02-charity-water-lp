@@ -22,32 +22,35 @@ body {
 
 .site-header {
   background-color: #fff;
-  padding: 1rem 2rem;
+  padding: 0.75rem 2rem;  /* Slightly reduced padding */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
 }
 
-.site-header h1 {
-  color: #77A8BB; /* Primary blue */
-  margin: 0;
-  font-size: 1.5rem;
+.header-logo {
+  height: 35px;  /* Slightly larger logo since it's the only element */
+  width: auto;
+  display: block;
 }
 
+/* Main CTA background and overlay */
 .main-cta {
   flex: 1;
   position: relative;
   background-image: url('img/charwater2.0.jpeg');
-  background-size: 120%; /* Zoom out to show more of the image */
-  background-position: center 40%; /* Adjust vertical position slightly */
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  image-rendering: -webkit-optimize-contrast; /* Sharper image rendering */
+  image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   display: flex;
   align-items: center;
   padding: 2rem;
-  max-width: 2000px; /* Limit max width for ultra-wide screens */
+  max-width: 2000px;
   margin: 0 auto;
   width: 100%;
-  overflow: hidden; /* Ensure overlay stays within bounds */
+  overflow: hidden;
 }
 
 /* Add dark overlay */
@@ -66,113 +69,124 @@ body {
 .cta-content {
   position: relative;
   z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2rem;
+  color: #fff;
+}
+
+/* Donate button: simple styling, absolute placement on larger screens */
+.donate-button {
+  display: inline-block;
+  background-color: #77A8BB; /* Primary blue */
+  color: #fff;
+  padding: 14px 32px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-top: 18px;
+  box-shadow: 0 2px 8px rgba(79, 203, 83, 0.10);
+  transition: background 0.3s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+/* Larger screens: position button at bottom-right of the CTA */
+@media (min-width: 601px) {
+  .donate-button {
+    position: absolute;
+    bottom: 1rem;    /* moved closer to bottom edge to appear lower (was 2rem) */
+    right: 2rem;
+    padding: 1rem 2rem;
+    white-space: nowrap;
+  }
+}
+
+.donate-button:hover {
+  background-color: #5d8a9c;
+  transform: translateY(-2px) scale(1.04);
 }
 
 /* 
   Media Queries for Responsive Design
-  Media queries help make your website look good on different screen sizes,
-  like phones (small screens) and computers (large screens).
+  We use media queries to adjust the layout and typography for different screen sizes.
+  - Small screens (max-width: 600px): prioritize readability, stack elements, make touch targets larger.
+  - Large screens (min-width: 601px): allow more spacing, position CTA button over the image, larger headlines.
 */
 
-/* This media query applies styles when the screen is 600px wide or less (like on most phones) */
 @media (max-width: 600px) {
-  /* Make hero section padding smaller on small screens */
-  .hero {
-    padding: 32px 8px;
-    font-size: 1em;
+  /* Small screens (phones) */
+  /* Reduce padding so content fits comfortably on small viewports */
+  .main-cta {
+    padding: 1.25rem;
+    background-position: center 45%; /* adjust focal point for narrow screens */
+    background-size: cover;
   }
 
-  /* Make headline font size smaller so it fits on small screens */
-  .hero h1 {
-    font-size: 1.4em;
-  }
-
-  /* Make subheadline font size smaller */
-  .hero p {
-    font-size: 1em;
-  }
-
-  /* Make story and call-to-action sections have less padding */
-  .story,
-  .call-to-action,
-  .donation-section {
-    padding: 14px 8px;
-  }
-
-  /* Make impact story image smaller and stack above the text */
-  .impact-content {
-    display: block; /* Stack items vertically */
-    text-align: center;
-  }
-
-  .impact-image {
-    width: 90%;    /* Make image take up most of the width */
-    max-width: 220px;
-  }
-
+  /* Make headline and paragraph sizes readable on phones */
   .cta-content h2 {
     font-size: 2rem;
-  }
-}
-
-/* This media query applies styles when the screen is wider than 600px (like on tablets and computers) */
-@media (min-width: 601px) {
-  /* Show image and text side by side in the impact story */
-  .impact-content {
-    display: flex;           /* Place items in a row */
-    align-items: center;     /* Vertically center items */
-    justify-content: center; /* Center the whole group */
-    gap: 28px;               /* Space between image and text */
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .impact-image {
-    width: 300px;
-  }
-
-  .cta-content {
-    position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 2rem;
-  }
-
-  .cta-content h2 {
-    color: #FFF7E1;
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    line-height: 1.08;
+    margin-bottom: 0.75rem;
   }
 
   .cta-content p {
-    color: #fff;
-    font-size: 1.2rem;
-    max-width: 800px;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
   }
 
+  /* Place the donate button inline below the text on mobile for easier tapping */
+  .donate-button {
+    position: static; /* don't float over the image on small screens */
+    display: inline-block;
+    width: auto;
+    padding: 12px 20px;
+    margin-top: 2rem; /* moved lower on mobile (was 1rem) */
+    white-space: normal;
+  }
+
+  /* Header font scale for small screens */
+  .site-header h1 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 601px) {
+  /* Larger screens (tablets & desktops) */
+  .main-cta {
+    padding: 2rem;
+    background-position: center; /* center composition on wider screens */
+    background-size: cover;
+  }
+
+  /* Bigger, more impactful headline on desktop */
+  .cta-content h2 {
+    font-size: 3.2rem;
+    line-height: 1.03;
+    margin-bottom: 1rem;
+  }
+
+  .cta-content p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  /* Position the donate button over the image at bottom-right for strong CTA */
   .donate-button {
     position: absolute;
-    bottom: 2rem;
+    bottom: 1rem;    /* moved closer to bottom edge to appear lower (was 2rem) */
     right: 2rem;
-    background-color: #77A8BB; /* Primary blue */
-    color: #fff;
     padding: 1rem 2rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: transform 0.2s, background-color 0.2s;
     white-space: nowrap;
   }
 
-  .donate-button:hover {
-    background-color: #5d8a9c; /* Darker shade of primary blue */
-    transform: translateY(-2px); /* Slight lift */
+  /* Slight header increase for larger screens */
+  .site-header h1 {
+    font-size: 1.5rem;
   }
 }
 
@@ -237,7 +251,7 @@ h2 {
 .call-to-action {
   background-color: #FFC907; /* Primary Yellow */
   color: #222;
-  text-align: center;
+  text-align: left;
   padding: 30px 20px;
 }
 
