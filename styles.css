@@ -22,16 +22,106 @@ body {
 
 .site-header {
   background-color: #fff;
-  padding: 0.75rem 2rem;  /* Slightly reduced padding */
+  padding: 25px;  /* Slightly reduced padding */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
 }
 
 .header-logo {
-  height: 35px;  /* Slightly larger logo since it's the only element */
+  height: 25px;  /* Slightly larger logo since it's the only element */
   width: auto;
   display: block;
+}
+
+/* Navigation in the header */
+.site-nav {
+  margin-left: auto; /* push nav to the right */
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 10px;
+}
+
+/* Dropdown menu (hidden by default) */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  padding: 8px 0;
+  min-width: 160px;
+  display: none;
+  z-index: 50;
+}
+
+.dropdown li {
+  list-style: none;
+}
+
+.dropdown a {
+  display: block;
+  padding: 8px 14px;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown a:hover {
+  background-color: #F5F7F8;
+}
+
+/* Show dropdown on hover for larger screens */
+@media (min-width: 601px) {
+  .nav-item:hover .dropdown,
+  .nav-item:focus-within .dropdown {
+    display: block;
+  }
+}
+
+/* Mobile: stack nav items and show dropdowns inline */
+@media (max-width: 600px) {
+  .site-header {
+    padding: 16px;
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-left: 0.75rem;
+  }
+
+  .dropdown {
+    position: static;
+    box-shadow: none;
+    display: block; /* keep items visible under each header on mobile */
+    padding-left: 12px;
+    background: transparent;
+  }
+
+  .dropdown a {
+    padding: 6px 0;
+  }
 }
 
 /* Main CTA background and overlay */
